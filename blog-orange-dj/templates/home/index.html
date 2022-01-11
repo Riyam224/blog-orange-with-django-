@@ -1,0 +1,186 @@
+{% extends 'base.html' %}
+
+{% load static  %}
+
+{% block title  %}
+
+BLOG | Home 
+    
+{% endblock title  %}
+
+
+{% block content  %}
+
+
+
+<div id="slider">
+    <div class="flexslider">
+      <ul class="slides">
+        <li>
+            <div class="slider-caption">
+                <h1>Delicious Meals</h1>
+                <p>Donec justo dui, semper vitae aliquam euzali, ornare pretium enim. Maecenas molestie diam
+                <br><br>eget tellus luctus fermentum.</p>
+                <a href="single-post.html">Shop Now</a>
+            </div>
+          <img src="{% static 'images/slide1.jpg' %}" alt="" />
+        </li>
+        <li>
+            <div class="slider-caption">
+                <h1>Ice-cream Menus</h1>
+                <p>Nulla id iaculis ligula. Vivamus mattis quam eget urna tincidunt consequat. Nullam 
+                <br><br>consectetur tempor neque vitae iaculis. Aliquam erat volutpat.</p>
+                <a href="single-post.html">More Details</a>
+            </div>
+          <img src="{% static 'images/slide2.jpg' %}" alt="" />
+        </li>
+        <li>
+            <div class="slider-caption">
+                <h1>Healthy Drinks</h1>
+                <p>Maecenas fermentum est ut elementum vulputate. Ut vel consequat urna. Ut aliquet 
+                <br><br>ornare massa, quis dapibus quam condimentum id.</p>
+                <a href="single-post.html">Get Ready</a>
+            </div>
+          <img src="{% static 'images/slide3.jpg' %}" alt="" />
+        </li>
+      </ul>
+    </div>
+</div>
+
+
+<div id="services">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="heading-section">
+                    <h2>Free Website Templates</h2>
+                    <img src="images/under-heading.png" alt="" >
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm-6">
+                <div class="service-item">
+                    <div class="icon">
+                        <i class="fa fa-pencil"></i>
+                    </div>
+                    <h4>Make an order</h4>
+                    <p>Sed egestas tincidunt mollis. Suspendisse rhoncus vitae enim et faucibus. Ut dignissim nec arcu nec hendrerit. Sed arcu  sagittis vel diam in, malesuada malesuada risus. Aenean a sem leoneski.</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="service-item">
+                    <div class="icon">
+                        <i class="fa fa-bullhorn"></i>
+                    </div>
+                    <h4>Promotions</h4>
+                    <p>Sed egestas tincidunt mollis. Suspendisse rhoncus vitae enim et faucibus. Ut dignissim nec arcu nec hendrerit. Sed arcu  sagittis vel diam in, malesuada malesuada risus. Aenean a sem leoneski.</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="service-item">
+                    <div class="icon">
+                        <i class="fa fa-bell"></i>
+                    </div>
+                    <h4>Ready to Serve</h4>
+                    <p>Sed egestas tincidunt mollis. Suspendisse rhoncus vitae enim et faucibus. Ut dignissim nec arcu nec hendrerit. Sed arcu  sagittis vel diam in, malesuada malesuada risus. Aenean a sem leoneski.</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="service-item">
+                    <div class="icon">
+                        <i class="fa fa-heart"></i>
+                    </div>
+                    <h4>Satisfaction</h4>
+                    <p>Sed egestas tincidunt mollis. Suspendisse rhoncus vitae enim et faucibus. Ut dignissim nec arcu nec hendrerit. Sed arcu  sagittis vel diam in, malesuada malesuada risus. Aenean a sem leoneski.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div id="latest-blog">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="heading-section">
+                    <h2>Latest blog posts</h2>
+                    <img src="{% static 'images/under-heading.png' %}" alt="" >
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            
+          {% for post in  post_list %}
+
+            <div class="col-md-4 col-sm-6">
+                <div class="blog-post">
+                    <div class="blog-thumb">
+                        <img src="{{post.image.url }}" alt="" />
+                    </div>
+                    <div class="blog-content">
+                        <div class="content-show">
+                            <h4><a href="{{post.get_absolute_url }}">{{ post.name }}</a></h4>
+                            <span>{{ post.created_at }}</span>
+                        </div>
+                        <div class="content-hide">
+                            <p>
+                             {{ post.content }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                
+            {% endfor %}
+                
+           
+          
+        </div>
+    </div>
+</div>
+
+
+<div id="testimonails">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="heading-section">
+                    <h2>What Customers Say</h2>
+                    <img src="{% static 'images/under-heading.png' %}" alt="" >
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="testimonails-slider">
+                  <ul class="slides">
+                      
+                     {% for user in  users %}
+
+                      <li>
+                        <div class="testimonails-content">
+                            <p>{{ user.content }} </p>
+                            <h6>{{ user.name }} - <a href="#">{{ user.job }}</a></h6>
+                        </div>
+                    </li>
+                          
+                      {% endfor %}
+                          
+                   
+                  
+                  </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+{% endblock content  %}
+    
+    

@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% load static  %}
+
+
+{% block title  %}
+
+products
+    
+{% endblock title  %}
+    
+
+{% block content  %}
+
+
+<div id="heading">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="heading-content">
+                    <h2>Our Products</h2>
+                    <span>Home / <a href="{% url 'home:about_us' %}">Products</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div id="products-post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div id="product-heading">
+                    <h2>Hungry ?</h2>
+                    <img src="{% static 'images/under-heading.png' %}" alt="" >
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div  class="filters col-md-12 col-xs-12">
+                <ul id="filters" class="clearfix">
+                    
+                    {% for category in categories %}
+                    <li><a href="{% url 'product:product_by_category'  category %}"><span class="filter" data-filter="all">{{ category}}</span></a></li>
+                    {% endfor %}
+                        
+         
+                </ul>
+            </div>
+        </div>
+     <div class="row" id="Container">
+            
+            {% for product in products  %}
+
+            <div class="col-md-3 col-sm-6 mix portfolio-item Pizza">       
+                <div class="portfolio-wrapper">                
+                    <div class="portfolio-thumb">
+                        <img src="{{ product.image.url }}" alt="" />
+                        <div class="hover">
+                            <div class="hover-iner">
+                                <a class="fancybox" href="images/product1_big.jpg"><img width="10px" src="{{ product.image.url }}" alt="" /></a>
+                                <span>{{ product.food.name }} </span>
+                            </div>
+                        </div>
+                    </div>  
+                    <div class="label-text">
+                        <h3><a href="single-post.html">{{ product.name }}</a></h3>
+                        <span class="text-category">${{ product.price }}</span>
+                    </div>
+                </div>          
+            </div>
+                
+            {% endfor %}
+                
+          
+
+        </div>
+        <div class="pagination">
+            <div class="row">   
+                
+                {% if products.has_other_pages  %}
+        
+                <div class="col-md-12">
+                    <ul>
+
+                        <!-- todo previous -->
+                        
+                        {% if products.has_previous  %}      
+                        <li><a class="page-item active" href="?page={{products.previous_page_number}}">Previous</a></li>
+                        {% else %}
+                        
+                        <li class="disabled"></li>
+                        
+                        {% endif %}
+                        <!-- todo loop over page  -->
+                         
+                         {% for pages in  products.paginator.page_range  %}
+                          {% if products.number == pages %}
+                          <li class="page-item active"><a class="page-links" href="#">{{ pages }} </a></li>
+                          {% else %}
+                          <li class="page-item active" ><a class="page-links" href="?page={{pages}}">{{ pages }} </a></li>
+                          {% endif %}
+                         {% endfor %}
+                  
+                        <!-- todo ./loop over pages  -->
+
+                       <!-- todo next  -->
+                        {% if products.has_next %}
+                        <li><a class="page-item active" href="?page={{products.next_page_number}}">Next</a></li>
+                        {% else %}
+                        <li class="disabled"></li>
+                        {% endif %}
+                    </ul>
+                </div>
+
+                {% endif %}
+            </div>
+        </div>     
+    
+        
+
+    
+    </div>
+</div>
+
+    
+{% endblock content  %}
+    
+       

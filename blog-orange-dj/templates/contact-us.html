@@ -1,0 +1,111 @@
+{% load static  %}
+
+{% include 'navbar.html' %}
+
+
+{% block title  %}
+
+
+    
+{% endblock title  %}
+    
+
+
+    
+
+
+            <div id="heading">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="heading-content">
+                                <h2>Contact Us</h2>
+                                <span>Home / <a href="#">Contact Us</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="product-post">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="heading-section">
+                                <h2>Feel free to send a message</h2>
+                                <img src="{% static 'images/under-heading.png' %}" alt="" >
+                            </div>
+                        </div>
+                    </div>
+                    <div id="contact-us">
+                        <div class="container">
+                            <div class="row">
+                           
+
+                                    <div class="product-item col-md-12">
+                                        <div class="row">
+
+                              
+
+                                            <div class="col-md-8">  
+                                                <div class="message-form">
+                                                    <form action="#" method="post" class="send-message">
+                                                        {% csrf_token %}
+                                                        <div class="row">
+                                                        <div class="name col-md-4">
+                                                            <input type="text" name="name" id="name" placeholder="Name" />
+                                                        </div>
+                                                        <div class="email col-md-4">
+                                                            <input type="text" name="email" id="email" placeholder="Email" />
+                                                        </div>
+                                                        <div class="subject col-md-4">
+                                                            <input type="text" name="subject" id="subject" placeholder="Subject" />
+                                                        </div>
+                                                        </div>
+                                                        <div class="row">        
+                                                            <div class="text col-md-12">
+                                                                <textarea name="text" placeholder="Message"></textarea>
+                                                            </div>   
+                                                        </div>                              
+                                                        <div class="send">
+                                                            <button type="submit">Send</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                                
+                                     
+                                         
+                                            <div class="col-md-4">
+                                                <div class="info">
+                                                    <p>Duis at pharetra neque, ut condimentum, purus nisl pretium quam, in pulvinar velit massa id elit. </p>
+                                                    
+                                                   
+                                                    <ul>
+                                                       
+                                                       {% for contact  in  contacts %}
+                                                       <li><i class="fa fa-phone"></i>{{ contact.phone_number}}</li>
+                                                       <li><i class="fa fa-globe"></i>{{ contact.place }}</li>
+                                                       <li><i class="fa fa-envelope"></i><a href="#">{{ contact.email }} </a></li>
+                                                       {% endfor %}
+                                                           
+                                                    </ul>
+                                                </div>
+                                            </div>     
+                                        </div>
+                                    </div>
+
+                               
+                                    
+                               
+                            </div>
+                        </div>
+                    </div>
+                  
+                </div>
+            </div>
+
+
+
+            {% include 'footer.html' %}
